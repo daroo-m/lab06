@@ -1,0 +1,16 @@
+all: <mainFileName.exe>
+
+<mainFileName.o>: <mainFileName.cpp> <dependency1.h> <dependency2.h>
+	g++ -std=c++98 -Wall -c <mainFileName.cpp> -o <mainFileName.o>
+
+<dependency1.o>: <dependency1.cpp> <dependency1.h>
+	g++ -std=c++98 -Wall -c <dependency1.cpp> -o <dependency1.o>
+
+<dependency2.o>: <dependency2.cpp> <dependency2.h>
+	g++ -std=c++98 -Wall -c <dependency2.cpp> -o <dependency2.o>
+
+<mainFileName.exe>: <dependency1.o> <dependency2.o> <mainFileName.o>
+	g++ -std=c++98 <dependency1.o> <dependency2.o> <mainFileName.o> -o <mainFileName.exe>
+
+clean:
+	rm -f *.o *.exe
